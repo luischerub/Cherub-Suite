@@ -96,3 +96,18 @@ jobs:
             See [README](https://github.com/luischerub/Cherub-Suite#readme) for full documentation.
           draft: false
           prerelease: false
+
+      - name: Update index.json
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/cherub_suite-${VERSION}.zip"
+          INTEGRITY=${{ steps.integrity.outputs.integrity }}
+          jq --arg version "$VERSION" --arg url "$URL" --arg integrity "$INTEGRITY" '.versions += [{"version": $version, "url": $url, "integrity": $integrity, "min_blender_version": "5.1.0"}]' index.json > index_temp.json && mv index_temp.json index.json
+
+      - name: Commit and Push index.json
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add index.json
+          git commit -m "Update index.json for v${{ steps.version.outputs.version }}" || echo "No changes to commit"
+          git push
