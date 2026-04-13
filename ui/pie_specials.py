@@ -1,0 +1,95 @@
+import bpy
+from bpy.types import Menu
+from .utils.get_addon_prefs import get_addon_preferences
+
+
+class CHERUBPIES_MT_Specials(Menu):
+    bl_label = "Cherub Pies Specials"
+    # bl_idname = "mesh.special_menu"
+
+    def draw(self, context):
+        ops_mesh = bpy.ops.mesh
+
+        layout = self.layout
+        pie = layout.menu_pie()
+        self.scale_y = get_addon_preferences().scale_y
+
+        pie.scale_y = self.scale_y
+
+        if bpy.context.mode == "EDIT_MESH":
+            #! 4 - LEFT
+            col = pie.split().box().row().column()
+            col.scale_y = self.scale_y
+
+            col.operator(
+                "mesh.set_edge_flow", text="Set Edge Flow", icon="IPO_CIRC"
+            )
+            col.operator(
+                "mesh.set_edge_linear",
+                text="Set Edge Linear",
+                icon="IPO_LINEAR",
+            )
+            #! 6 - RIGHT
+            pie.operator(
+                "transform.shear", text="Shear", icon="OUTLINER_DATA_LATTICE"
+            )
+            # pie.operator(
+            #     "mesh.set_edge_flow",
+            #     text="Set Edge Flow",
+            #     icon="SNAP_FACE",)
+            #! 2 - BOTTOM
+
+            # for op_module_name in dir(ops_mesh):
+            if "bezier_mesh_shaper" in dir(ops_mesh):
+                pie.operator(
+                    "mesh.bezier_mesh_shaper", text="Bezier Mesh Shaper"
+                )
+            else:
+                pie_col = pie.column()
+                gap = pie_col.column()
+                gap.separator()
+                gap.scale_y = 7
+                # col = pie_col.split().box().row().column()
+                col = pie_col.split().box().row().column()
+                col.scale_y = self.scale_y
+
+                col.label(text="Bezier Mesh Shaper")
+                box = col.box().column()
+                box.alignment = "CENTER"
+                box.alert = True
+                box.label(text="This feature need to be installed ")
+                # col.scale_x = 1
+                box.operator(
+                    "wm.url_open", text="Purchase on Gumroad", icon="WORLD"
+                ).url = "https://gumroad.com/l/bezier_mesh_shaper"
+
+            #! 8 - TOP
+            pie.operator(
+                "mesh.bridge_edge_loops",
+                text="Bridge Edge Loops",
+                icon="OUTLINER_OB_LATTICE",
+            )
+            #! 7 - TOP - LEFT
+            pie.operator("mesh.fill_grid", text="Grid Fill", icon="GRID")
+            #! 9 - TOP - RIGHT
+            pie.operator("mesh.inset", text="Inset", icon="SNAP_FACE")
+            #! 1 - BOTTOM - LEFT
+            pie.separator()
+            # pie.operator(
+            #     "cherub_pies.delete_half_mirror",
+            #     text="Delete Half and Mirror X",
+            # )
+            #! 3 - BOTTOM - RIGHT
+            pie_col = pie.column()
+            gap = pie_col.column()
+            gap.separator()
+            gap.scale_x = 5
+            gap.scale_y = 5
+            col = pie_col.split().box().row().column()
+            col.scale_y = self.scale_y
+
+            col.operator("mesh.quads_convert_to_tris", text="Triangulate")
+            col.operator("mesh.poke", text="Poke Faces")
+            col.operator("mesh.face_make_planar", text="Make Planar Faces")
+            col.operator("mesh.subdivide", text="Subdivide")
+
