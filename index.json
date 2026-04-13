@@ -9,6 +9,11 @@
   "maintainer": "Luís Cherubini",
   "repository": "https://github.com/luischerub/Cherub-Suite",
   "support": "https://github.com/luischerub/Cherub-Suite/issues",
-  "versions": []
-}
+  "versions": [
+    {
+      "version": "0.2.0",
+      "url": "https://github.com/luischerub/Cherub-Suite/releases/download/v0.2.0/cherub_suite.zip",
+      "blender_version_min": "4.2.0"
+    }
+  ]
 }
