@@ -61,6 +61,13 @@ jobs:
           echo "package_name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
           ls -lh "$PACKAGE_NAME"
 
+      - name: Compute Integrity Hash
+        id: integrity
+        run: |
+          PACKAGE_NAME=${{ steps.package.outputs.package_name }}
+          INTEGRITY=$(sha256sum "$PACKAGE_NAME" | cut -d' ' -f1)
+          echo "integrity=sha256:$INTEGRITY" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -74,6 +81,9 @@ jobs:
             2. In Blender 5.1+: Edit → Preferences → Extensions
             3. Click the folder icon and select the downloaded .zip file
             4. Install the extension
+            
+            ## Integrity
+            SHA256: `${{ steps.integrity.outputs.integrity }}`
             
             ## Features
             
