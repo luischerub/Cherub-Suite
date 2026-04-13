@@ -1,0 +1,99 @@
+name: Build Package
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Extension Package
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create Extension Package
+        id: build
+        run: |
+          # Get version from manifest
+          VERSION=$(grep '^version = ' .blender_ext.toml | cut -d'"' -f2)
+          PACKAGE_NAME="cherub_suite-${VERSION}-dev.zip"
+          
+          # Create zip excluding unwanted files
+          zip -r "$PACKAGE_NAME" . \
+            -x ".git/*" \
+            ".github/*" \
+            ".gitignore" \
+            ".gitattributes" \
+            "*.md" \
+            "README*" \
+            "CHANGELOG*" \
+            "LICENSE*" \
+            "__pycache__/*" \
+            "*.pyc" \
+            ".vscode/*" \
+            ".pytest_cache/*" \
+            "*.zip" \
+            "*/.DS_Store" \
+            "Thumbs.db"
+          
+          echo "package_name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          ls -lh "$PACKAGE_NAME"
+
+      - name: Verify Package Contents
+        run: |
+          PACKAGE_NAME=${{ steps.build.outputs.package_name }}
+          
+          echo "📦 Package contents:"
+          unzip -l "$PACKAGE_NAME" | head -30
+          
+          echo ""
+          echo "Checking for required files in package:"
+          
+          required=(
+            "__init__.py"
+            ".blender_ext.toml"
+            "manifest.toml"
+            "operators/__init__.py"
+            "ui/__init__.py"
+          )
+          
+          for file in "${required[@]}"; do
+            if unzip -t "$PACKAGE_NAME" "$file" &>/dev/null; then
+              echo "✓ $file"
+            else
+              echo "❌ Missing: $file"
+              exit 1
+            fi
+          done
+
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cherub-suite-package
+          path: ${{ steps.build.outputs.package_name }}
+          retention-days: 30
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const files = fs.readdirSync('.').filter(f => f.endsWith('.zip'));
+            
+            if (files.length > 0) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `✅ **Build successful!**\n\nPackage: \`${files[0]}\`\n\nDownload from the Artifacts section.`
+              });
+            }

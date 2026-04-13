@@ -39,36 +39,19 @@ modules = addon_auto_imports.setup_addon_modules(
     __path__,
     __name__,
     ignore_packages=[".utils", ".releases"],
-    ignore_modules=["addon_updater"],
 )
 
 bl_info = {
-    "name": "Cherub Pie Menus",
-    "description": "Description of this addon",
+    "name": "Cherub Suite",
+    "description": "Comprehensive pie menu system for fast modeling workflows with proportional editing, mesh operations, and UV tools",
     "author": "Fernando Lopes, Luís Cherubini & Aditia A. Pratama",
-    "version": (0, 0, 96),
-    "blender": (2, 80, 0),
+    "version": (0, 2, 0),
+    "blender": (5, 1, 0),
     "location": "View3D",
-    "warning": "This addon is still in development.",
-    "wiki_url": "",
-    "category": "Object",
+    "wiki_url": "https://github.com/luischerub/Cherub-Suite",
+    "category": "Modeling",
+    "support": "COMMUNITY",
 }
-
-
-def update_panel(self, context):
-    message = "Cherub Pie Menus: Updating Panel locations has failed"
-    try:
-        for panel in panels:
-            if "bl_rna" in panel.__dict__:
-                bpy.utils.unregister_class(panel)
-
-        for panel in panels:
-            panel.bl_category = get_addon_preferences().category
-            bpy.utils.register_class(panel)
-
-    except Exception as e:
-        print("\n[{}]\n{}\n\nError:\n{}".format(__name__, message, e))
-        pass
 
 
 class CHERUBPIES_MT_Prefs(Preferences):
@@ -78,7 +61,6 @@ class CHERUBPIES_MT_Prefs(Preferences):
         items=(
             ("options", "Options", "ADDON OPTIONS"),
             ("keymaps", "Keymaps", "CHANGE KEYMAPS"),
-            ("update", "Update", "UPDATE"),
         ),
         default="keymaps",
     )
@@ -87,19 +69,6 @@ class CHERUBPIES_MT_Prefs(Preferences):
     uv_window_y: IntProperty(name="", default=900, min=128, max=1024)
 
     scale_y: FloatProperty(name="", default=1, min=1, max=2)
-
-    update_exist: BoolProperty(
-        name="Update Exist",
-        description="There is new Cherub Pie Menus update",
-        default=False,
-    )
-    update_text: StringProperty(name="Update text", default="")
-    category: StringProperty(
-        name="Tab Category",
-        description="Choose a name for the category of the panel",
-        default="Cherub Pies Menu",
-        update=update_panel,
-    )
     # reinstall: BoolProperty(
     #     name="Reinstall",
     #     description="Force reinstalling curernt version",
@@ -138,36 +107,12 @@ class CHERUBPIES_MT_Prefs(Preferences):
             wm = bpy.context.window_manager
             draw_keymap_items(wm, layout)
 
-        if self.prefs_tabs == "update":
-            box = layout.box()
-            col = box.column()
-            sub_row = col.row(align=True)
-            sub_row.operator("cherub_pie_menus.check_for_update")
-            split_lines_text = self.update_text.splitlines()
-            for line in split_lines_text:
-                sub_row = col.row(align=True)
-                sub_row.label(text=line)
-            sub_row.separator()
-            sub_row = col.row(align=True)
-            if self.update_exist:
-                sub_row.operator(
-                    "cherub_pie_menus.update_addon",
-                    text="Install latest version",
-                ).reinstall = False
-            else:
-                sub_row.operator(
-                    "cherub_pie_menus.update_addon",
-                    text="Reinstall current version",
-                ).reinstall = True
-            sub_row.operator("cherub_pie_menus.rollback_addon")
-
 
 classes.append(CHERUBPIES_MT_Prefs)
 
 
 def register():
     register_ui()
-    # get_addon_preferences().update_text = ""
 
     for c in classes:
         bpy.utils.register_class(c)

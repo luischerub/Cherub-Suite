@@ -1,0 +1,121 @@
+name: Validate Extension
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Extension Manifest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install TOML Parser
+        run: |
+          pip install toml
+
+      - name: Validate .blender_ext.toml
+        run: |
+          python3 << 'EOF'
+          import toml
+          import sys
+          
+          try:
+              with open('.blender_ext.toml', 'r') as f:
+                  manifest = toml.load(f)
+              
+              # Check required fields
+              required = ['schema_version', 'id', 'version', 'name', 'type', 'blender_version_min']
+              for field in required:
+                  if field not in manifest:
+                      print(f"❌ Missing required field: {field}")
+                      sys.exit(1)
+              
+              print(f"✓ Manifest validation passed")
+              print(f"  ID: {manifest['id']}")
+              print(f"  Name: {manifest['name']}")
+              print(f"  Version: {manifest['version']}")
+              print(f"  Blender Min: {manifest['blender_version_min']}")
+              
+          except Exception as e:
+              print(f"❌ Invalid .blender_ext.toml: {e}")
+              sys.exit(1)
+          EOF
+
+      - name: Validate manifest.toml
+        run: |
+          python3 << 'EOF'
+          import toml
+          
+          try:
+              with open('manifest.toml', 'r') as f:
+                  manifest = toml.load(f)
+              print("✓ manifest.toml is valid TOML")
+          except Exception as e:
+              print(f"⚠ Warning: manifest.toml issue: {e}")
+          EOF
+
+      - name: Check Python Syntax
+        run: |
+          python3 -m py_compile __init__.py
+          python3 -m py_compile operators/__init__.py
+          python3 -m py_compile ui/__init__.py
+          echo "✓ Python syntax validation passed"
+
+      - name: Verify Required Files
+        run: |
+          # Check that required files exist
+          required_files=(
+            "__init__.py"
+            ".blender_ext.toml"
+            "manifest.toml"
+            "operators"
+            "ui"
+            "lib"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -e "$file" ]; then
+              echo "❌ Missing required file/directory: $file"
+              exit 1
+            fi
+            echo "✓ Found: $file"
+          done
+
+      - name: Check for Deprecated Files
+        run: |
+          deprecated=(
+            "update_addon.py"
+            "operators/update_addon.py"
+          )
+          
+          found_deprecated=0
+          for file in "${deprecated[@]}"; do
+            if [ -f "$file" ]; then
+              # Check if it's just a deprecation stub
+              if grep -q "DEPRECATED" "$file" 2>/dev/null; then
+                echo "✓ $file is deprecated (safe)"
+              else
+                echo "❌ $file still contains active code!"
+                found_deprecated=1
+              fi
+            fi
+          done
+          
+          if [ $found_deprecated -eq 1 ]; then
+            exit 1
+          fi

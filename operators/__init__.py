@@ -47,9 +47,6 @@ from ..lib.UVSquares.uv_squares import (
     UV_PT_SnapToAxisWithEqual,
 )
 
-
-# from .update_addon import AddonCheckUpdateExist, AddonRollBack, AddonUpdate
-
 classes = [
     CHERUBPIES_OT_DeleteHalfMirror,
     CHERUBPIES_OT_AddHotkey,
@@ -82,9 +79,5 @@ classes = [
     UV_PT_JoinFaces,
     UV_PT_SnapToAxis,
     UV_PT_SnapToAxisWithEqual,
-    #match_islands.Match_Islands,
     CHERUBPIES_OT_CallUvWindow,
-    # AddonCheckUpdateExist,
-    # AddonRollBack,
-    # AddonUpdate,
 ]

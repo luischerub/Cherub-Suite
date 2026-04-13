@@ -1,0 +1,88 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags (v0.2.0, v0.2.1, etc.)
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Create Release
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract Version from Tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: Validate Manifest Version
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          MANIFEST_VERSION=$(grep '^version = ' .blender_ext.toml | cut -d'"' -f2)
+          if [ "$VERSION" != "$MANIFEST_VERSION" ]; then
+            echo "ERROR: Tag version ($VERSION) does not match .blender_ext.toml version ($MANIFEST_VERSION)"
+            exit 1
+          fi
+          echo "✓ Version validation passed: $VERSION"
+
+      - name: Create Package
+        id: package
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          ADDON_NAME="cherub-suite"
+          PACKAGE_NAME="cherub_suite-${VERSION}.zip"
+          
+          # Create zip excluding unwanted files
+          zip -r "$PACKAGE_NAME" . \
+            -x ".git/*" \
+            ".github/*" \
+            ".gitignore" \
+            "*.md" \
+            "README*" \
+            "CHANGELOG*" \
+            "LICENSE*" \
+            "__pycache__/*" \
+            "*.pyc" \
+            ".vscode/*" \
+            ".pytest_cache/*" \
+            "*.zip"
+          
+          echo "package_name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          ls -lh "$PACKAGE_NAME"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.package.outputs.package_name }}
+          body: |
+            # Cherub Suite v${{ steps.version.outputs.version }}
+            
+            ## Installation
+            
+            1. Download `${{ steps.package.outputs.package_name }}`
+            2. In Blender 5.1+: Edit → Preferences → Extensions
+            3. Click the folder icon and select the downloaded .zip file
+            4. Install the extension
+            
+            ## Features
+            
+            - 9 customizable pie menus for modeling workflows
+            - Fast proportional editing with 7 falloff variants
+            - UV editing tools with seam marking and unwrapping
+            - One-click mirror workflows
+            - Full hotkey customization
+            
+            See [README](https://github.com/luischerub/Cherub-Suite#readme) for full documentation.
+          draft: false
+          prerelease: false

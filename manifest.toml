@@ -1,0 +1,38 @@
+# Manifest for Cherub Suite
+# This file provides additional metadata about the extension
+
+[metadata]
+name = "Cherub Suite"
+version = "0.2.0"
+author = "Fernando Lopes, Luís Cherubini & Aditia A. Pratama"
+description = "Comprehensive pie menu system for fast modeling workflows with proportional editing, mesh operations, and UV tools"
+license = "GPL-3.0-or-later"
+category = "Modeling"
+
+[links]
+homepage = "https://github.com/luischerub/Cherub-Suite"
+documentation = "https://github.com/luischerub/Cherub-Suite/wiki"
+bugtracker = "https://github.com/luischerub/Cherub-Suite/issues"
+source = "https://github.com/luischerub/Cherub-Suite"
+
+[requirements]
+blender = "5.1.0"
+python = "3.11"
+
+[features]
+pie_menus = "9 customizable radial menus for modeling tasks"
+proportional_editing = "7 falloff variants for both edit and object modes"
+uv_tools = "UV seam marking, unwrapping, and grid tools"
+modeling_ops = "Delete-half mirror, snap, and transform utilities"
+hotkey_customization = "Full keymap customization via preferences"
+integrated_tools = "EdgeFlow and UVSquares integration"
+
+[support]
+status = "COMMUNITY"
+funding = "https://github.com/sponsors/luischerub"
+
+[credits]
+original_authors = "Fernando Lopes, Aditia A. Pratama"
+blender_5_1_migration = "Luís Cherubini"
+edgeflow_original = "Benjamin Sauder"
+uvsquares_original = "Reslav Hollos"
