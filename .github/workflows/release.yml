@@ -99,10 +99,30 @@ jobs:
 
       - name: Update index.json
         run: |
-          VERSION=${{ steps.version.outputs.version }}
-          URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/cherub_suite-${VERSION}.zip"
-          INTEGRITY=${{ steps.integrity.outputs.integrity }}
-          jq --arg version "$VERSION" --arg url "$URL" --arg integrity "$INTEGRITY" '.versions += [{"version": $version, "url": $url, "integrity": $integrity, "min_blender_version": "5.1.0"}]' index.json > index_temp.json && mv index_temp.json index.json
+          python3 << 'EOF'
+          import json
+          
+          with open('index.json', 'r') as f:
+              index = json.load(f)
+          
+          version = "${{ steps.version.outputs.version }}"
+          url = "https://github.com/${{ github.repository }}/releases/download/v" + version + "/cherub_suite-" + version + ".zip"
+          integrity = "${{ steps.integrity.outputs.integrity }}"
+          
+          new_version = {
+              "version": version,
+              "url": url,
+              "integrity": integrity,
+              "blender_version_min": "5.1.0"
+          }
+          
+          index["versions"].append(new_version)
+          
+          with open('index.json', 'w') as f:
+              json.dump(index, f, indent=2)
+          
+          print(f"Updated index.json with version {version}")
+          EOF
 
       - name: Commit and Push index.json
         run: |
