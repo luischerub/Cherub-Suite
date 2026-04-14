@@ -2,6 +2,7 @@
   "version": "1.0.0",
   "data": [
     {
+      "schema_version": "1.0.0",
       "id": "cherub_suite",
       "type": "add-on",
       "name": "Cherub Suite",
