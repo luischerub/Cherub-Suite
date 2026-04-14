@@ -1,24 +1,20 @@
 {
-  "schema_version": "1.0.0",
   "version": "1.0.0",
-  "extensions": [
+  "data": [
     {
       "id": "cherub_suite",
       "type": "add-on",
       "name": "Cherub Suite",
       "tagline": "Comprehensive pie menu system for fast modeling workflows",
-      "description": "Cherub Suite is a comprehensive modeling toolkit for Blender 4.2+ that provides quick radial menus (pie menus) and modeling utilities to streamline common mesh editing tasks.\n\nFeatures:\n• 9 customizable pie menus with 8-directional options each\n• Fast proportional editing with 7 falloff variants\n• UV editing tools with integrated seam marking and unwrapping\n• One-click mirror workflows with delete-half operations\n• Snap and transform utilities for quick modeling\n• Built-in hotkey customization via addon preferences\n• Supports Blender 4.2 and newer\n\nThe addon includes integrated versions of EdgeFlow and UVSquares for complete mesh editing capabilities.",
-      "website": "https://github.com/luischerub/Cherub-Suite",
+      "description": "Cherub Suite is a comprehensive modeling toolkit that provides quick radial menus (pie menus) and modeling utilities.",
+      "version": "0.2.0",
+      "blender_version_min": "4.2.0",
+      "author": "Luís Cherubini",
       "maintainer": "Luís Cherubini",
-      "repository": "https://github.com/luischerub/Cherub-Suite",
-      "support": "https://github.com/luischerub/Cherub-Suite/issues",
-      "versions": [
-        {
-          "version": "0.2.0",
-          "url": "https://github.com/luischerub/Cherub-Suite/releases/download/v0.2.0/cherub_suite-0.2.0.zip",
-          "blender_version_min": "4.2.0"
-        }
-      ]
+      "website": "https://github.com/luischerub/Cherub-Suite",
+      "download_url": "https://github.com/luischerub/Cherub-Suite/releases/download/v0.2.0/cherub_suite-0.2.0.zip",
+      "license": ["SPDX:GPL-3.0-or-later"],
+      "copyright": ["2026 Luís Cherubini"]
     }
   ]
 }
