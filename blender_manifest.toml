@@ -1,40 +1,12 @@
-# Manifest for Cherub Suite
-# This file provides additional metadata about the extension
-
 schema_version = "1.0.0"
 id = "cherub_suite"
 version = "0.2.0"
 name = "Cherub Suite"
-tagline = "Comprehensive pie menu system for fast modeling workflows"
+tagline = "Advanced mecha and hard-surface design utility"
 maintainer = "Luís Cherubini"
 type = "add-on"
-blender_version_min = "5.1.0"
-license = ["SPDX:GPL-3.0-or-later"]
+blender_version_min = "4.2.0"
+license = ["GPL-2.0-or-later"]
 
-[links]
-homepage = "https://github.com/luischerub/Cherub-Suite"
-documentation = "https://github.com/luischerub/Cherub-Suite/wiki"
-bugtracker = "https://github.com/luischerub/Cherub-Suite/issues"
-source = "https://github.com/luischerub/Cherub-Suite"
-
-[requirements]
-blender = "5.1.0"
-python = "3.11"
-
-[features]
-pie_menus = "9 customizable radial menus for modeling tasks"
-proportional_editing = "7 falloff variants for both edit and object modes"
-uv_tools = "UV seam marking, unwrapping, and grid tools"
-modeling_ops = "Delete-half mirror, snap, and transform utilities"
-hotkey_customization = "Full keymap customization via preferences"
-integrated_tools = "EdgeFlow and UVSquares integration"
-
-[support]
-status = "COMMUNITY"
-funding = "https://github.com/sponsors/luischerub"
-
-[credits]
-original_authors = "Fernando Lopes, Aditia A. Pratama"
-blender_5_1_migration = "Luís Cherubini"
-edgeflow_original = "Benjamin Sauder"
-uvsquares_original = "Reslav Hollos"
+[permissions]
+# If your operators need to save files or talk to the web, list them here.
