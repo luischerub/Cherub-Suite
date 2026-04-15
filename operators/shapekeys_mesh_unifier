@@ -1,0 +1,44 @@
+import bpy
+
+def unify_objects_with_shape_keys():
+    # get selected mesh objects
+    objs = [o for o in bpy.context.selected_objects if o.type == 'MESH']
+    if not objs:
+        print("No mesh objects selected.")
+        return
+    
+    # the last selected is always the basis
+    base = bpy.context.view_layer.objects.active
+    if base not in objs:
+        print("Active object must be part of the selection.")
+        return
+    
+    # duplicate the base so we don’t overwrite the original
+    base_copy = base.copy()
+    base_copy.data = base.data.copy()
+    bpy.context.collection.objects.link(base_copy)
+    
+    # reset transforms on the copy
+    base_copy.location = (0,0,0)
+    base_copy.rotation_euler = (0,0,0)
+    base_copy.scale = (1,1,1)
+    
+    # make it active
+    bpy.context.view_layer.objects.active = base_copy
+    base_copy.select_set(True)
+    
+    # ensure shape keys exist
+    if base_copy.data.shape_keys is None:
+        base_copy.shape_key_add(name="Basis")
+    
+    # add shape keys for the other objects (using local coords only)
+    for obj in objs:
+        if obj == base:
+            continue
+        sk = base_copy.shape_key_add(name=obj.name)
+        for i, v in enumerate(obj.data.vertices):
+            sk.data[i].co = v.co.copy()
+    
+    print(f"Created unified object '{base_copy.name}' with {len(base_copy.data.shape_keys.key_blocks)} shape keys.")
+
+unify_objects_with_shape_keys()

@@ -13,6 +13,7 @@ from .pie_proportional import (
 )
 from .pie_pivot import CHERUBPIES_MT_PivotOrientation
 from .pie_save import CHERUBPIES_MT_SaveOpen, CHERUBPIES_MT_Recover
+from .shape_keys_panel import register_shape_keys_panel_override, unregister_shape_keys_panel_override
 
 classes = [
     CHERUBPIES_MT_Specials,
@@ -29,4 +30,14 @@ classes = [
     CHERUBPIES_MT_Recover,
 ]
 
-register_ui, unregister_ui = bpy.utils.register_classes_factory(classes)
+register_ui_classes, unregister_ui_classes = bpy.utils.register_classes_factory(classes)
+
+
+def register_ui():
+    register_ui_classes()
+    register_shape_keys_panel_override()
+
+
+def unregister_ui():
+    unregister_shape_keys_panel_override()
+    unregister_ui_classes()
