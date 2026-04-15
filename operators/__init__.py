@@ -31,6 +31,8 @@ from .proportional_edits import (
 )
 from .selection_origin import CHERUBPIES_OT_SelectionToWorldOrigin
 from .cursor_center import CHERUBPIES_OT_SelectionCursorToCenter
+from .shapekeys_bake_to_attr import CHERUB_OT_BakeShapeKeysToAttributes
+from .shapekeys_mesh_unifier import CHERUB_OT_UnifyMeshesToShapeKeys
 from ..lib.EdgeFlow import (
     util,
     interpolate,
@@ -71,6 +73,8 @@ classes = [
     CHERUBPIES_OT_MarkFaceBoundary,
     CHERUBPIES_OT_UnmarkFaceBoundary,
     CHERUBPIES_OT_SelectionToWorldOrigin,
+    CHERUB_OT_BakeShapeKeysToAttributes,
+    CHERUB_OT_UnifyMeshesToShapeKeys,
     op_set_edge_flow.SetEdgeFlowOP,
     op_set_edge_linear.SetEdgeLinearOP,
     UV_PT_UvSquares,

@@ -30,8 +30,8 @@ Remove-Item -Recurse -Force $StageDir -ErrorAction SilentlyContinue
 # --- 4. BLENDER REPOSITORY INDEX ---
 Write-Host "Updating repository index..." -ForegroundColor Yellow
 Set-Location $DistDir
-# Blender 5.1 requires --repo-dir
-& $BlenderExe --command extension server-generate --repo-dir .
+# Adding --force ensures the index.json is truly overwritten with new manifest data
+& $BlenderExe --command extension server-generate --repo-dir . --force
 
 # --- 5. DEPLOYMENT ---
 Write-Host "Pushing to GitHub..." -ForegroundColor Magenta
