@@ -30,8 +30,12 @@ Remove-Item -Recurse -Force $StageDir -ErrorAction SilentlyContinue
 # --- 4. BLENDER REPOSITORY INDEX ---
 Write-Host "Updating repository index..." -ForegroundColor Yellow
 Set-Location $DistDir
-# Adding --force ensures the index.json is truly overwritten with new manifest data
-& $BlenderExe --command extension server-generate --repo-dir . --force
+
+# Clean the old one first
+if (Test-Path "index.json") { Remove-Item "index.json" -Force }
+
+# Use the full path variable to ensure Blender sees the argument
+& $BlenderExe --command extension server-generate --repo-dir "$DistDir"
 
 # --- 5. DEPLOYMENT ---
 Write-Host "Pushing to GitHub..." -ForegroundColor Magenta
