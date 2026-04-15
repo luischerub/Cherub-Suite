@@ -11,7 +11,8 @@ class CHERUBPIES_MT_UVs(Menu):
         tool_settings = context.tool_settings
 
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         #! 4 - LEFT
         pie.scale_y = self.scale_y
         pie.operator(
@@ -69,7 +70,8 @@ class CHERUBPIES_MT_UVsEditor(Menu):
         tool_settings = context.tool_settings
 
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         #! 4 - LEFT
         pie.separator()
         #! 6 - RIGHT

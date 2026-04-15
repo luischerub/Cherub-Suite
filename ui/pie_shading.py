@@ -9,7 +9,8 @@ class CHERUBPIES_MT_Shading(Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         pie.scale_y = self.scale_y
         # Find the Smooth by Angle Geometry Nodes modifier
         obj = context.object

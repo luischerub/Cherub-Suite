@@ -9,7 +9,8 @@ class CHERUBPIES_MT_ProportionalObjectMode(Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         # 4 - LEFT
         pie.operator(
             "cherub_pies.proportional_sphere", text="Sphere", icon="SPHERECURVE"
@@ -53,7 +54,8 @@ class CHERUBPIES_MT_ProportionalEditMode(Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         pie.scale_y = self.scale_y
         # 4 - LEFT
         pie.operator(
@@ -111,7 +113,8 @@ class CHERUBPIES_MT_ProportionalMore(Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         box = pie.split().column()
         box.scale_y = self.scale_y
 

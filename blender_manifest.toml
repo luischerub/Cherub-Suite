@@ -7,6 +7,9 @@ maintainer = "Luís Cherubini"
 type = "add-on"
 blender_version_min = "4.2.0"
 license = ["GPL-2.0-or-later"]
+website = "https://github.com/luischerub/Cherub-Suite"
+categories = ["Modeling"]
+tags = ["Modeling", "UV", "Pie Menu", "Workflow"]
 
 [permissions]
 # If your operators need to save files or talk to the web, list them here.

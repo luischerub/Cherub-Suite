@@ -13,17 +13,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-bl_info = {
-    "name": "UV Squares",
-    "description": "UV Editor tool for reshaping selection to grid.",
-    "author": "Reslav Hollos",
-    "version": (1, 12, 1),
-    "blender": (2, 80, 0),
-    "location": "UV Editor > N Panel > UV Squares",
-    "category": "UV",
-    "wiki_url": "http://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/UV/Uv_Squares"
-}
-
 import bpy
 import bmesh
 from collections import defaultdict

@@ -15,6 +15,9 @@ def call_uv_window(context):
     # Store current render settings
     render = bpy_context.scene.render
     prefs = get_addon_preferences()
+    if not prefs:
+        # Fallback values if preferences not available
+        prefs = type('FallbackPrefs', (), {'uv_window_x': 900, 'uv_window_y': 900})()
     
     # Apply resolution from preferences
     orig_res_x = render.resolution_x

@@ -22,18 +22,6 @@ modules = addon_auto_imports.setup_addon_modules(
     ignore_packages=[".utils", ".releases"],
 )
 
-bl_info = {
-    "name": "Cherub Suite",
-    "description": "Comprehensive pie menu system for fast modeling workflows with proportional editing, mesh operations, and UV tools",
-    "author": "Fernando Lopes, Luís Cherubini & Aditia A. Pratama",
-    "version": (0, 2, 0),
-    "blender": (5, 1, 0),
-    "location": "View3D",
-    "wiki_url": "https://github.com/luischerub/Cherub-Suite",
-    "category": "Modeling",
-    "support": "COMMUNITY",
-}
-
 
 class CHERUBPIES_MT_Prefs(Preferences):
     bl_idname = __name__
@@ -100,7 +88,8 @@ def register():
 
     add_hotkey()
 
-    print("Registered {} with {} modules".format(bl_info["name"], len(modules)))
+    addon_name = "Cherub Suite"
+    print("Registered {} with {} modules".format(addon_name, len(modules)))
 
 
 def unregister():
@@ -111,5 +100,6 @@ def unregister():
 
     remove_hotkey()
 
-    print("Unregistered {}".format(bl_info["name"]))
+    addon_name = "Cherub Suite"
+    print("Unregistered {}".format(addon_name))
 

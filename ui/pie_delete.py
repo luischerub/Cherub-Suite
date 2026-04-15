@@ -24,7 +24,8 @@ class CHERUBPIES_MT_Delete(Menu):
 
         if ob.object.type == "MESH":
             pie = layout.menu_pie()
-            self.scale_y = get_addon_preferences().scale_y
+            addon_prefs = get_addon_preferences()
+            self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
 
             pie.scale_y = self.scale_y
 
@@ -61,7 +62,7 @@ class CHERUBPIES_MT_Delete(Menu):
 
             pie_col = pie.column()
             box01 = pie_col.column()
-            box01.emboss = "RADIAL_MENU"
+            box01.emboss = "PIE_MENU"
             box01.ui_units_x = 7
             box01.scale_y = 1.5 * pie.scale_y
             gap = pie_col.column()

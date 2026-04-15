@@ -12,7 +12,8 @@ class CHERUBPIES_MT_Specials(Menu):
 
         layout = self.layout
         pie = layout.menu_pie()
-        self.scale_y = get_addon_preferences().scale_y
+        addon_prefs = get_addon_preferences()
+        self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
 
         pie.scale_y = self.scale_y
 
