@@ -9,7 +9,7 @@ def draw_shape_keys_button(self, context):
     row = layout.row(align=True)
     row.operator(
         "cherub.bake_shape_keys_to_attrs",
-        text="Bake Keys to Attr",
+        text="Keys to Attributes",
         icon="GEOMETRY_NODES",
     )
     row.operator(
