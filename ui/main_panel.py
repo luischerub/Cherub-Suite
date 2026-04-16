@@ -43,3 +43,6 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 		row = col.row(align=True)
 		row.operator("cherub.assetlib_render_assets", icon="RENDER_STILL")
 		row.operator("cherub.assetlib_assign_thumb", icon="IMAGE_DATA")
+
+		info = col.box()
+		info.label(text='Only affects mesh objects marked as "Assets".', icon="INFO")
