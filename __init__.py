@@ -3,6 +3,7 @@ import bpy
 from .operators import classes
 from .utils import addon_auto_imports
 from .ui import register_ui, unregister_ui
+from .asset_settings import register_properties, unregister_properties
 from .operators.add_hotkey import add_hotkey, remove_hotkey, draw_keymap_items
 from bpy.types import AddonPreferences as Preferences
 from bpy.props import (
@@ -82,6 +83,7 @@ classes.append(CHERUBPIES_MT_Prefs)
 
 def register():
     register_ui()
+    register_properties()
 
     for c in classes:
         bpy.utils.register_class(c)
@@ -93,6 +95,7 @@ def register():
 
 
 def unregister():
+    unregister_properties()
     unregister_ui()
 
     for c in classes:
