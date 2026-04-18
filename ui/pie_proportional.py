@@ -99,7 +99,7 @@ class CHERUBPIES_MT_ProportionalEditMode(Menu):
         )
         # 3 - BOTTOM - RIGHT
         pie.menu(
-            bl_idname.CHERUBPIES_MT_ProportionalMore,
+            CHERUBPIES_MT_ProportionalMore.bl_idname,
             text="More",
             icon="LINCURVE",
         )
@@ -107,7 +107,7 @@ class CHERUBPIES_MT_ProportionalEditMode(Menu):
 
 # Pie ProportionalEditEdt - O
 class CHERUBPIES_MT_ProportionalMore(Menu):
-    # bl_idname = "cherub_pies.proportional_more"
+    bl_idname = "cherub_pies.proportional_more"
     bl_label = "Cherub Pies Proportional More"
 
     def draw(self, context):

@@ -32,7 +32,12 @@ class CHERUB_OT_UnifyMeshesToShapeKeys(bpy.types.Operator):
 		base_copy.data = base.data.copy()
 		context.collection.objects.link(base_copy)
 
-		base_copy.location = (0.0, 0.0, 0.0)
+		avg_location = objs[0].matrix_world.translation.copy()
+		for obj in objs[1:]:
+			avg_location += obj.matrix_world.translation
+		avg_location /= len(objs)
+
+		base_copy.location = avg_location
 		base_copy.rotation_euler = (0.0, 0.0, 0.0)
 		base_copy.scale = (1.0, 1.0, 1.0)
 
