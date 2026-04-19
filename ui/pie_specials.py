@@ -40,29 +40,9 @@ class CHERUBPIES_MT_Specials(Menu):
             #     icon="SNAP_FACE",)
             #! 2 - BOTTOM
 
-            # for op_module_name in dir(ops_mesh):
-            if "bezier_mesh_shaper" in dir(ops_mesh):
-                pie.operator(
-                    "mesh.bezier_mesh_shaper", text="Bezier Mesh Shaper"
-                )
-            else:
-                pie_col = pie.column()
-                gap = pie_col.column()
-                gap.separator()
-                gap.scale_y = 7
-                # col = pie_col.split().box().row().column()
-                col = pie_col.split().box().row().column()
-                col.scale_y = self.scale_y
-
-                col.label(text="Bezier Mesh Shaper")
-                box = col.box().column()
-                box.alignment = "CENTER"
-                box.alert = True
-                box.label(text="This feature need to be installed ")
-                # col.scale_x = 1
-                box.operator(
-                    "wm.url_open", text="Purchase on Gumroad", icon="WORLD"
-                ).url = "https://gumroad.com/l/bezier_mesh_shaper"
+            pie.operator(
+                "mesh.bezier_deform", text="Bezier Deform"
+            )
 
             #! 8 - TOP
             pie.operator(

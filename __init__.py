@@ -88,6 +88,9 @@ def register():
     for c in classes:
         bpy.utils.register_class(c)
 
+    if hasattr(bpy.types, "BezierDeformProperties") and not hasattr(bpy.types.Scene, "bezierDeformProperties"):
+        bpy.types.Scene.bezierDeformProperties = bpy.props.PointerProperty(type=bpy.types.BezierDeformProperties)
+
     add_hotkey()
 
     addon_name = "Cherub Suite"
@@ -95,6 +98,9 @@ def register():
 
 
 def unregister():
+    if hasattr(bpy.types.Scene, "bezierDeformProperties"):
+        del bpy.types.Scene.bezierDeformProperties
+
     unregister_properties()
     unregister_ui()
 

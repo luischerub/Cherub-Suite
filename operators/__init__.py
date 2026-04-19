@@ -35,6 +35,10 @@ from .shapekeys_bake_to_attr import CHERUB_OT_BakeShapeKeysToAttributes
 from .shapekeys_mesh_unifier import CHERUB_OT_UnifyMeshesToShapeKeys
 from .assetlib_render_assets import CHERUB_OT_AssetLibRender
 from .assetlib_assign_thumb import CHERUB_OT_AssetLibAssignThumb
+from .bezier_deform import (
+    BezierDeformProperties,
+    MESH_OT_bezier_deform,
+)
 from ..lib.EdgeFlow import (
     util,
     interpolate,
@@ -79,6 +83,8 @@ classes = [
     CHERUB_OT_UnifyMeshesToShapeKeys,
     CHERUB_OT_AssetLibRender,
     CHERUB_OT_AssetLibAssignThumb,
+    BezierDeformProperties,
+    MESH_OT_bezier_deform,
     op_set_edge_flow.SetEdgeFlowOP,
     op_set_edge_linear.SetEdgeLinearOP,
     UV_PT_UvSquares,
