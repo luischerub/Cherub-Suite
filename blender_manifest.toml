@@ -11,7 +11,6 @@ website = "https://github.com/luischerub/Cherub-Suite"
 blender_version_min = "4.2.0"
 
 license = ["GPL-2.0-or-later"]
-website = "https://github.com/luischerub/Cherub-Suite"
 categories = ["Modeling"]
 tags = ["User Interface", "Mesh", "Modeling", "Pipeline"]
 
