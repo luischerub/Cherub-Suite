@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 id = "cherub_suite"
-version = "0.2.3"
+version = "0.2.4"
 name = "Cherub Suite"
 tagline = "Advanced mecha and hard-surface design utility"
 maintainer = "Luis Cherubini"
