@@ -95,6 +95,6 @@ class CHERUBPIES_MT_UVsEditor(Menu):
             expand=True,
         )
         #! 1 - BOTTOM - LEFT
-        pie.operator("uv.uv_snap_to_axis", text="Snap to Axis")
+        pie.separator()
         #! 3 - BOTTOM - RIGHT
         pie.operator("uv.match_islands", text="Match UV Island")
