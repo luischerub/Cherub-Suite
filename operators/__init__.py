@@ -33,6 +33,7 @@ from .selection_origin import CHERUBPIES_OT_SelectionToWorldOrigin
 from .cursor_center import CHERUBPIES_OT_SelectionCursorToCenter
 from .shapekeys_bake_to_attr import CHERUB_OT_BakeShapeKeysToAttributes
 from .shapekeys_mesh_unifier import CHERUB_OT_UnifyMeshesToShapeKeys
+from .assetlib_renameby_material import CHERUB_OT_AssetLibRenameByMaterial
 from .assetlib_render_assets import CHERUB_OT_AssetLibRender
 from .assetlib_assign_thumb import CHERUB_OT_AssetLibAssignThumb
 from .bezier_deform import (
@@ -70,6 +71,7 @@ classes = [
     CHERUBPIES_OT_SelectionToWorldOrigin,
     CHERUB_OT_BakeShapeKeysToAttributes,
     CHERUB_OT_UnifyMeshesToShapeKeys,
+    CHERUB_OT_AssetLibRenameByMaterial,
     CHERUB_OT_AssetLibRender,
     CHERUB_OT_AssetLibAssignThumb,
     BezierDeformProperties,
