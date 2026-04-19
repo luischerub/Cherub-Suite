@@ -1,4 +1,4 @@
-﻿schema_version = "1.0.0"
+schema_version = "1.0.0"
 
 id = "cherub_suite"
 version = "0.2.7"
@@ -15,4 +15,3 @@ categories = ["Modeling"]
 tags = ["User Interface", "Mesh", "Modeling", "Pipeline"]
 
 [permissions]
-# If your operators need to grow or save files, list it here.
