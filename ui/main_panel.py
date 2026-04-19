@@ -39,6 +39,8 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 
 		col.separator()
 
+		col.operator("cherub.assetlib_rename_by_material", icon="MATERIAL")
+
 		row = col.row(align=True)
 		row.operator("cherub.assetlib_render_assets", icon="RENDER_STILL")
 		row.operator("cherub.assetlib_assign_thumb", icon="IMAGE_DATA")
