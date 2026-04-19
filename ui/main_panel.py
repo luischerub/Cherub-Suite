@@ -36,7 +36,6 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 		col.prop(props, "output_path")
 		col.prop(props, "render_res")
 		col.prop(props, "padding")
-		col.prop(props, "only_selected")
 
 		col.separator()
 
@@ -45,4 +44,4 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 		row.operator("cherub.assetlib_assign_thumb", icon="IMAGE_DATA")
 
 		info = col.box()
-		info.label(text='Only affects mesh objects marked as "Assets".', icon="INFO")
+		info.label(text="Select objects before rendering.", icon="INFO")

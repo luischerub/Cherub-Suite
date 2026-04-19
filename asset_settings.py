@@ -27,13 +27,6 @@ class CherubAssetSettings(bpy.types.PropertyGroup):
         min=1.0
     )
 
-    # Toggle for targeting specific assets
-    only_selected: BoolProperty(
-        name="Only Selected",
-        description="Only process assets that are currently selected",
-        default=False
-    )
-
     # N-panel section state
     asset_tools_expanded: BoolProperty(
         name="Asset Library Tools",

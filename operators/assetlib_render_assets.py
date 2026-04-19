@@ -3,7 +3,7 @@ import os
 from .utils.camera_utils import fit_camera_to_obj
 
 class CHERUB_OT_AssetLibRender(bpy.types.Operator):
-    """Render high-quality thumbnails for marked assets"""
+    """Render high-quality thumbnails for selected mesh objects"""
     bl_idname = "cherub.assetlib_render_assets"
     bl_label = "Render Thumbnails"
     bl_options = {'REGISTER', 'UNDO'}
@@ -17,16 +17,11 @@ class CHERUB_OT_AssetLibRender(bpy.types.Operator):
             self.report({'ERROR'}, "Please add a camera to the scene first!")
             return {'CANCELLED'}
 
-        # 1. Filter: Marked assets in this scene
-        if props.only_selected:
-            assets = [obj for obj in context.selected_objects 
-                      if obj.asset_data and obj.type == 'MESH']
-        else:
-            assets = [obj for obj in scene.objects 
-                      if obj.asset_data and obj.type == 'MESH']
+        # 1. Filter: selected mesh objects only
+        assets = [obj for obj in context.selected_objects if obj.type == 'MESH']
 
         if not assets:
-            self.report({'WARNING'}, "No marked mesh assets found.")
+            self.report({'WARNING'}, "No selected mesh objects found.")
             return {'CANCELLED'}
 
         # 2. Setup Render Environment
