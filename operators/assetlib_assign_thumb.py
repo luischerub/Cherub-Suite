@@ -2,7 +2,7 @@ import bpy
 import os
 
 class CHERUB_OT_AssetLibAssignThumb(bpy.types.Operator):
-    """Assign rendered images as thumbnails for marked assets"""
+    """Assign rendered images as thumbnails for selected mesh objects"""
     bl_idname = "cherub.assetlib_assign_thumb"
     bl_label = "Apply Thumbnails"
     bl_options = {'REGISTER', 'UNDO'}
@@ -10,17 +10,12 @@ class CHERUB_OT_AssetLibAssignThumb(bpy.types.Operator):
     def execute(self, context):
         scene = context.scene
         props = scene.cherub_settings
-        
-        # 1. Filter: Which assets are we targeting?
-        if props.only_selected:
-            assets = [obj for obj in context.selected_objects 
-                      if obj.asset_data and obj.type == 'MESH']
-        else:
-            assets = [obj for obj in scene.objects 
-                      if obj.asset_data and obj.type == 'MESH']
+
+        # 1. Filter: selected mesh objects only
+        assets = [obj for obj in context.selected_objects if obj.type == 'MESH']
 
         if not assets:
-            self.report({'WARNING'}, "No marked mesh assets found to update.")
+            self.report({'WARNING'}, "No selected mesh objects found to update.")
             return {'CANCELLED'}
 
         # 2. Path Validation
