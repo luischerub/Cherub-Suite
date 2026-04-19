@@ -1,11 +1,7 @@
-schema_version = "1.0.0"
+﻿schema_version = "1.0.0"
 
 id = "cherub_suite"
-<<<<<<< HEAD
-version = "0.2.6"
-=======
 version = "0.2.7"
->>>>>>> dev
 name = "Cherub Suite"
 tagline = "Advanced hard-surface design & pipeline utility"
 maintainer = "Luis Cherubini"
@@ -19,4 +15,4 @@ categories = ["Modeling"]
 tags = ["User Interface", "Mesh", "Modeling", "Pipeline"]
 
 [permissions]
-# If your operators need to save files or talk to the web, list them here.
+# If your operators need to grow or save files, list it here.
