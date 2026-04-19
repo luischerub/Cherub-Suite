@@ -39,13 +39,10 @@ from .bezier_deform import (
     BezierDeformProperties,
     MESH_OT_bezier_deform,
 )
-from ..lib.EdgeFlow import (
-    util,
-    interpolate,
-    edgeloop,
-    op_set_edge_flow,
-    op_set_edge_linear,
-)
+from .edgetools_flow import CHERUB_OT_EdgeFlow
+from .edgetools_linear import CHERUB_OT_EdgeLinear
+from .edgetools_curve import CHERUB_OT_EdgeCurve
+from .edgetools_vertex_curve import CHERUB_OT_VertexCurve
 from ..lib.UVSquares.uv_squares import (
     UV_PT_UvSquares,
     UV_PT_UvSquaresByShape,
@@ -85,8 +82,10 @@ classes = [
     CHERUB_OT_AssetLibAssignThumb,
     BezierDeformProperties,
     MESH_OT_bezier_deform,
-    op_set_edge_flow.SetEdgeFlowOP,
-    op_set_edge_linear.SetEdgeLinearOP,
+    CHERUB_OT_EdgeFlow,
+    CHERUB_OT_EdgeLinear,
+    CHERUB_OT_EdgeCurve,
+    CHERUB_OT_VertexCurve,
     UV_PT_UvSquares,
     UV_PT_UvSquaresByShape,
     UV_PT_RipFaces,

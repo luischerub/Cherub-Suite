@@ -78,3 +78,54 @@ def hermite_3d(p1, p2, p3, p4, mu, tension, bias):
     z = hermite_1d(p1[2], p2[2], p3[2], p4[2], mu, tension, bias)
 
     return [x, y, z]
+
+
+def smooth_step(a, b, x):
+    '''
+    Perform Hermite interpolation between two values
+    '''
+
+    value = clamp((x - a) / (b - a))    
+    return value * value * (3 - 2 * value)
+    
+    
+def clamp(x, lowerlimit = 0.0, upperlimit = 1.0):
+    '''
+    Constrain a value to lie between two further values
+    '''
+    if (x < lowerlimit): return lowerlimit
+    if (x > upperlimit): return upperlimit
+    return x
+
+
+def map_segment_onto_spline(segment, positions):
+    """
+    Calculates total arc length and redistributes segment vertices evenly.
+    Endpoints are preserved and only interior vertices are moved.
+    """
+    if len(segment) == 1:
+        return
+
+    total_lenght = 0
+    for index in range(1, len(positions)):
+        total_lenght += (positions[index] - positions[index - 1]).magnitude
+
+    segment_part_length = total_lenght / float(len(segment) - 1)
+
+    current_segment_index = 1
+    current_length = 0
+    for index in range(1, len(positions)):
+        current_length += (positions[index] - positions[index - 1]).magnitude
+        if current_length >= segment_part_length:
+            remainder = current_length - segment_part_length
+            current_length = current_length % segment_part_length
+
+            p1 = positions[index - 1]
+            p2 = positions[index]
+            p = p1 + (p1 - p2).normalized() * remainder
+
+            if current_segment_index != 0 and current_segment_index != len(segment) - 1:
+                v = segment[current_segment_index]
+                v.co = p
+                current_segment_index += 1
+

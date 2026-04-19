@@ -23,19 +23,25 @@ class CHERUBPIES_MT_Specials(Menu):
             col.scale_y = self.scale_y
 
             col.operator(
-                "mesh.set_edge_flow", text="Set Edge Flow", icon="IPO_CIRC"
+                "mesh.cherub_edge_flow", text="Edge Flow", icon="IPO_CIRC"
             )
             col.operator(
-                "mesh.set_edge_linear",
-                text="Set Edge Linear",
+                "mesh.cherub_edge_linear",
+                text="Edge Linear",
                 icon="IPO_LINEAR",
+            )
+            col.operator(
+                "mesh.cherub_edge_curve", text="Edge Curve", icon="CURVE_BEZCURVE"
+            )
+            col.operator(
+                "mesh.cherub_vertex_curve", text="Vertex Curve", icon="OUTLINER_DATA_CURVE"
             )
             #! 6 - RIGHT
             pie.operator(
                 "transform.shear", text="Shear", icon="OUTLINER_DATA_LATTICE"
             )
             # pie.operator(
-            #     "mesh.set_edge_flow",
+            #     "mesh.cherub_edge_flow",
             #     text="Set Edge Flow",
             #     icon="SNAP_FACE",)
             #! 2 - BOTTOM
