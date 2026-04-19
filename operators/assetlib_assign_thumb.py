@@ -2,7 +2,7 @@ import bpy
 import os
 
 class CHERUB_OT_AssetLibAssignThumb(bpy.types.Operator):
-    """Assign rendered images as thumbnails for selected mesh objects"""
+    """Assign rendered images as thumbnails for all marked assets"""
     bl_idname = "cherub.assetlib_assign_thumb"
     bl_label = "Apply Thumbnails"
     bl_options = {'REGISTER', 'UNDO'}
@@ -11,11 +11,22 @@ class CHERUB_OT_AssetLibAssignThumb(bpy.types.Operator):
         scene = context.scene
         props = scene.cherub_settings
 
-        # 1. Filter: selected mesh objects only
-        assets = [obj for obj in context.selected_objects if obj.type == 'MESH']
+        # 1. Collect all marked assets from every datablock collection in the file
+        assets = []
+        for prop in bpy.types.BlendData.bl_rna.properties:
+            if prop.type != 'COLLECTION':
+                continue
+
+            collection = getattr(bpy.data, prop.identifier, None)
+            if collection is None:
+                continue
+
+            for datablock in collection:
+                if getattr(datablock, "asset_data", None) is not None:
+                    assets.append(datablock)
 
         if not assets:
-            self.report({'WARNING'}, "No selected mesh objects found to update.")
+            self.report({'WARNING'}, "No marked assets found in this file.")
             return {'CANCELLED'}
 
         # 2. Path Validation
@@ -24,21 +35,30 @@ class CHERUB_OT_AssetLibAssignThumb(bpy.types.Operator):
             self.report({'ERROR'}, f"Folder not found: {output_folder}")
             return {'CANCELLED'}
 
-        count = 0
-        # 3. Assignment Loop
-        for obj in assets:
-            img_path = os.path.join(output_folder, f"{obj.name}.webp")
-            
-            if os.path.isfile(img_path):
-                try:
-                    # The technical 'magic' for Blender 5.0+
-                    with bpy.context.temp_override(id=obj):
-                        bpy.ops.ed.lib_id_load_custom_preview(filepath=img_path)
-                    count += 1
-                except Exception as e:
-                    print(f"Failed to assign {obj.name}: {e}")
-            else:
-                print(f"Skipping {obj.name}: No matching .webp found.")
+        available_webps = {
+            os.path.splitext(filename)[0]
+            for filename in os.listdir(output_folder)
+            if filename.lower().endswith('.webp')
+        }
 
-        self.report({'INFO'}, f"Updated {count} asset thumbnails successfully!")
+        count = 0
+        missing = 0
+        # 3. Assignment Loop
+        for asset in assets:
+            if asset.name not in available_webps:
+                missing += 1
+                print(f"Skipping {asset.name}: No matching .webp found.")
+                continue
+
+            img_path = os.path.join(output_folder, f"{asset.name}.webp")
+
+            try:
+                # Only exact filename matches are applied; all others stay unchanged.
+                with context.temp_override(id=asset):
+                    bpy.ops.ed.lib_id_load_custom_preview(filepath=img_path)
+                count += 1
+            except Exception as e:
+                print(f"Failed to assign {asset.name}: {e}")
+
+        self.report({'INFO'}, f"Updated {count} asset thumbnails ({missing} without matching image).")
         return {'FINISHED'}
