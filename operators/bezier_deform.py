@@ -104,10 +104,16 @@ class MESH_OT_bezier_deform(bpy.types.Operator):
         self.vertex_fractions = self._curve_fractions(path_points)
         self.path_vertex_indices = [vertex.index for vertex in path_vertices]
         self.path_original_world_points = path_points
-        self._prepare_falloff_data()
 
         bpy.ops.object.mode_set(mode='OBJECT')
         self._create_curve_object(context, curve_points)
+
+        # Resample the freshly-spawned curve to get its actual initial shape.
+        # Setting the baseline to the curve's own initial sample ensures the first
+        # deformation is always a zero-delta no-op.
+        self.path_original_world_points = self._sample_curve(self.vertex_fractions)
+        self._prepare_falloff_data()
+
         self._apply_curve_deformation()
         self.last_snapshot = self._curve_snapshot()
 
