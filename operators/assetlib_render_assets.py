@@ -1,6 +1,5 @@
 import bpy
 import os
-from .utils.camera_utils import fit_camera_to_obj
 
 class CHERUB_OT_AssetLibRender(bpy.types.Operator):
     """Render high-quality thumbnails for selected mesh objects"""
@@ -41,11 +40,16 @@ class CHERUB_OT_AssetLibRender(bpy.types.Operator):
         for mesh in all_meshes:
             mesh.hide_render = True
 
+        # Use the active object as the framing reference — it's the object the artist
+        # positioned the camera for.  Fall back to assets[0] if active isn't a mesh.
+        reference = context.active_object if (context.active_object and context.active_object.type == 'MESH') else assets[0]
+        cam_offset = cam.location.copy() - reference.matrix_world.translation
+
         for obj in assets:
             obj.hide_render = False
-            
-            # Frame the object using our utility
-            fit_camera_to_obj(cam, obj, scene, props.padding)
+
+            # Frame the object: apply the same camera offset from its origin
+            cam.location = obj.matrix_world.translation + cam_offset
             
             # Set unique filename and render
             scene.render.filepath = os.path.join(output_folder, f"{obj.name}.webp")
