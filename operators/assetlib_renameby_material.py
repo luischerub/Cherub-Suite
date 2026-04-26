@@ -4,7 +4,7 @@ import bpy
 class CHERUB_OT_AssetLibRenameByMaterial(bpy.types.Operator):
     """Rename selected mesh objects to match their active material names"""
     bl_idname = "cherub.assetlib_rename_by_material"
-    bl_label = "Rename Objects to Material"
+    bl_label = "Rename Objects by Material"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):

@@ -8,9 +8,9 @@ maintainer = "Luis Cherubini"
 type = "add-on"
 website = "https://github.com/luischerub/Cherub-Suite"
 
-blender_version_min = "4.2.0"
+blender_version_min = "5.0.0"
 
-license = ["GPL-2.0-or-later"]
+license = ["GPL-3.0-or-later"]
 categories = ["Modeling"]
 tags = ["User Interface", "Mesh", "Modeling", "Pipeline"]
 

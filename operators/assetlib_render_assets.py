@@ -31,6 +31,9 @@ class CHERUB_OT_AssetLibRender(bpy.types.Operator):
         scene.render.film_transparent = True
         
         output_folder = bpy.path.abspath(props.output_path)
+        if not output_folder or output_folder.strip("/\\") == "":
+            self.report({'WARNING'}, "Please define an output path before rendering.")
+            return {'CANCELLED'}
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
 
