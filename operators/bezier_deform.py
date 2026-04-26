@@ -517,11 +517,11 @@ class MESH_OT_bezier_deform(bpy.types.Operator):
     def _restore_mesh_object(self, context):
         bpy.ops.object.select_all(action='DESELECT')
         for object_name in self.original_selection_names:
-            obj = bpy.data.objects.get(object_name)
+            obj = context.scene.objects.get(object_name)
             if obj is not None:
                 obj.select_set(True)
 
-        mesh_object = bpy.data.objects.get(self.original_active_name)
+        mesh_object = context.scene.objects.get(self.original_active_name)
         if mesh_object is not None:
             context.view_layer.objects.active = mesh_object
             bpy.ops.object.mode_set(mode='EDIT')
