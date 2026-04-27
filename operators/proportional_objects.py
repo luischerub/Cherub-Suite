@@ -1,7 +1,6 @@
 import bpy
 
 from bpy.types import Operator
-from .utils.set_proportional import set_proportional
 
 
 class CHERUBPIES_OT_ProportionalSmooth(Operator):
@@ -14,7 +13,7 @@ class CHERUBPIES_OT_ProportionalSmooth(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "SMOOTH"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "SMOOTH"
         return {"FINISHED"}
 
@@ -29,7 +28,7 @@ class CHERUBPIES_OT_ProportionalSphere(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "SPHERE"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "SPHERE"
         return {"FINISHED"}
 
@@ -44,7 +43,7 @@ class CHERUBPIES_OT_ProportionalRoot(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "ROOT"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "ROOT"
         return {"FINISHED"}
 
@@ -59,7 +58,7 @@ class CHERUBPIES_OT_ProportionalSharp(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "SHARP"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "SHARP"
         return {"FINISHED"}
 
@@ -74,7 +73,7 @@ class CHERUBPIES_OT_ProportionalLinear(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "LINEAR"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "LINEAR"
         return {"FINISHED"}
 
@@ -89,7 +88,7 @@ class CHERUBPIES_OT_ProportionalConstant(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "CONSTANT"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "CONSTANT"
         return {"FINISHED"}
 
@@ -104,6 +103,6 @@ class CHERUBPIES_OT_ProportionalRandom(Operator):
         if ts.use_proportional_edit_objects:
             ts.proportional_edit_falloff = "RANDOM"
         else:
-            set_proportional(context)
+            ts.use_proportional_edit_objects = not ts.use_proportional_edit_objects
             ts.proportional_edit_falloff = "RANDOM"
         return {"FINISHED"}

@@ -1,7 +1,6 @@
 import bpy
 
 from bpy.types import Operator
-from .utils.set_proportional import set_proportional_edit
 
 
 class CHERUBPIES_OT_ProportionalEditToggle(Operator):
@@ -10,7 +9,10 @@ class CHERUBPIES_OT_ProportionalEditToggle(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        set_proportional_edit(context)
+        ts = context.tool_settings
+        ts.use_proportional_connected = False
+        ts.use_proportional_projected = False
+        ts.use_proportional_edit = not ts.use_proportional_edit
         return {"FINISHED"}
 
 
@@ -38,7 +40,9 @@ class CHERUBPIES_OT_ProportionalEditConnected(Operator):
             ts.use_proportional_connected = True
             ts.use_proportional_projected = False
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
         return {"FINISHED"}
 
 
@@ -65,7 +69,9 @@ class CHERUBPIES_OT_ProportionalEditProjected(Operator):
             ts.use_proportional_projected = True
             ts.use_proportional_connected = False
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
         return {"FINISHED"}
 
 
@@ -79,7 +85,9 @@ class CHERUBPIES_OT_ProportionalEditSmooth(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SMOOTH"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "SMOOTH"
         return {"FINISHED"}
 
@@ -94,7 +102,9 @@ class CHERUBPIES_OT_ProportionalEditSphere(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SPHERE"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "SPHERE"
         return {"FINISHED"}
 
@@ -109,7 +119,9 @@ class CHERUBPIES_OT_ProportionalEditRoot(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "ROOT"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "ROOT"
         return {"FINISHED"}
 
@@ -124,7 +136,9 @@ class CHERUBPIES_OT_ProportionalEditSharp(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SHARP"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "SHARP"
         return {"FINISHED"}
 
@@ -139,7 +153,9 @@ class CHERUBPIES_OT_ProportionalEditLinear(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "LINEAR"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "LINEAR"
         return {"FINISHED"}
 
@@ -154,7 +170,9 @@ class CHERUBPIES_OT_ProportionalEditConstant(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "CONSTANT"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "CONSTANT"
         return {"FINISHED"}
 
@@ -169,6 +187,8 @@ class CHERUBPIES_OT_ProportionalEditRandom(Operator):
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "RANDOM"
         else:
-            set_proportional_edit(context)
+            ts.use_proportional_connected = False
+            ts.use_proportional_projected = False
+            ts.use_proportional_edit = not ts.use_proportional_edit
             ts.proportional_edit_falloff = "RANDOM"
         return {"FINISHED"}
