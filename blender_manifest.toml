@@ -12,6 +12,6 @@ blender_version_min = "5.0.0"
 
 license = ["GPL-3.0-or-later"]
 categories = ["Modeling"]
-tags = ["User Interface", "Mesh", "Modeling", "Pipeline"]
+tags = ["Mesh", "Modeling", "Pipeline"]
 
 [permissions]
