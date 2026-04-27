@@ -48,10 +48,7 @@ class CHERUBPIES_MT_UVs(Menu):
         #! 7 - TOP - LEFT
         pie.separator()
         #! 9 - TOP - RIGHT
-        if bpy.context.mode == "EDIT_MESH":
-            pie.operator("cherub_pies.call_uv_window", text="UV Editor Window")
-        else:
-            pie.separator()
+        pie.separator()
         #! 1 - BOTTOM - LEFT
         pie.operator(
             "cherub_pies.unmark_face_boundary", text="Unmark Face Boundary"

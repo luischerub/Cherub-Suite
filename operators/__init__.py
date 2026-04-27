@@ -7,7 +7,6 @@ from .uv_boundary import (
     CHERUBPIES_OT_UnmarkFaceBoundary,
 )
 
-from .uv_window import CHERUBPIES_OT_CallUvWindow
 from .proportional_objects import (
     CHERUBPIES_OT_ProportionalSmooth,
     CHERUBPIES_OT_ProportionalRoot,
@@ -80,5 +79,4 @@ classes = [
     CHERUB_OT_EdgeLinear,
     CHERUB_OT_EdgeCurve,
     CHERUB_OT_VertexCurve,
-    CHERUBPIES_OT_CallUvWindow,
 ]

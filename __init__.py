@@ -6,12 +6,8 @@ from .asset_settings import register_properties, unregister_properties
 from .operators.add_hotkey import add_hotkey, remove_hotkey, draw_keymap_items
 from bpy.types import AddonPreferences as Preferences
 from bpy.props import (
-    StringProperty,
-    BoolProperty,
-    FloatVectorProperty,
     FloatProperty,
     EnumProperty,
-    IntProperty,
 )
 
 class CHERUBPIES_MT_Prefs(Preferences):
@@ -24,9 +20,6 @@ class CHERUBPIES_MT_Prefs(Preferences):
         ),
         default="keymaps",
     )
-
-    uv_window_x: IntProperty(name="", default=900, min=128, max=1024)
-    uv_window_y: IntProperty(name="", default=900, min=128, max=1024)
 
     scale_y: FloatProperty(name="", default=1, min=1, max=2)
     # reinstall: BoolProperty(
@@ -43,16 +36,6 @@ class CHERUBPIES_MT_Prefs(Preferences):
 
         if self.prefs_tabs == "options":
             box = layout.box()
-            row = box.split().row()
-            row.label(text="UV Window Resolution:")
-            col = row.column_flow(columns=2)
-            split = col.split(factor=0.2)
-            split.label(text="X :")
-            split.prop(self, "uv_window_x", expand=True, text=" ")
-            split = col.split(factor=0.2)
-            split.label(text="Y :")
-            split.prop(self, "uv_window_y", expand=True, text=" ")
-
             row = box.row(align=True)
             row.label(text="Pie Menus Buttons Scale Y :")
             row.prop(self, "scale_y", expand=True, text=" ")
