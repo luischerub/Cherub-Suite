@@ -1,4 +1,4 @@
-<h1><img src="media/brand_vector.svg" height="36" alt=""/> Cherub Suite</h1>
+<h1><img src="media/cherub_logo.svg" height="36" alt="" style="vertical-align: text-top"/> Cherub Suite</h1>
 
 A Blender add-on that bundles common pie menu shortcuts and Asset Library authoring utilities into a single extension.
 
