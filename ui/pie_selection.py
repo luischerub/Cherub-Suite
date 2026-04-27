@@ -1,7 +1,6 @@
 import bpy
 
 from bpy.types import Menu
-from ..operators.utils.get_tool_settings import get_tool_settings
 
 
 class CHERUBPIES_MT_Selection(Menu):

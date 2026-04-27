@@ -2,7 +2,6 @@ import bpy
 
 from bpy.types import Operator
 from .utils.set_proportional import set_proportional_edit
-from .utils.get_tool_settings import get_tool_settings
 
 
 class CHERUBPIES_OT_ProportionalEditToggle(Operator):
@@ -22,7 +21,7 @@ class CHERUBPIES_OT_ProportionalEditConnected(Operator):
 
     def execute(self, context):
         # ts = context.tool_settings
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         ts.use_proportional_connected = False
         ts.use_proportional_projected = False
         if (
@@ -49,7 +48,7 @@ class CHERUBPIES_OT_ProportionalEditProjected(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         ts.use_proportional_connected = False
         ts.use_proportional_projected = False
         if (
@@ -76,7 +75,7 @@ class CHERUBPIES_OT_ProportionalEditSmooth(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SMOOTH"
         else:
@@ -91,7 +90,7 @@ class CHERUBPIES_OT_ProportionalEditSphere(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SPHERE"
         else:
@@ -106,7 +105,7 @@ class CHERUBPIES_OT_ProportionalEditRoot(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "ROOT"
         else:
@@ -121,7 +120,7 @@ class CHERUBPIES_OT_ProportionalEditSharp(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "SHARP"
         else:
@@ -136,7 +135,7 @@ class CHERUBPIES_OT_ProportionalEditLinear(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "LINEAR"
         else:
@@ -151,7 +150,7 @@ class CHERUBPIES_OT_ProportionalEditConstant(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "CONSTANT"
         else:
@@ -166,7 +165,7 @@ class CHERUBPIES_OT_ProportionalEditRandom(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
         if ts.use_proportional_edit:
             ts.proportional_edit_falloff = "RANDOM"
         else:

@@ -2,21 +2,20 @@ import bpy
 
 from bpy.types import Menu
 from .. import __package__ as base_package
-from ..operators.utils.get_tool_settings import get_tool_settings
 
 
 class CHERUBPIES_MT_Delete(Menu):
     bl_label = "Cherub Pies Delete"
 
     def draw(self, context):
-        context_sel = [False, False, False]
         face_sel = (False, False, True)
         edge_sel = (False, True, False)
         vert_sel = (True, False, False)
         total_face_sel = bpy.context.object.data.total_vert_sel
         total_edge_sel = bpy.context.object.data.total_edge_sel
         total_vert_sel = bpy.context.object.data.total_vert_sel
-        ts = get_tool_settings()
+        ts = context.scene.tool_settings
+        context_sel = list(ts.mesh_select_mode)
 
         layout = self.layout
         # toolsettings = context.tool_settings
@@ -74,8 +73,8 @@ class CHERUBPIES_MT_Delete(Menu):
             box02.scale_x = 1.3
             box02.scale_y = 1.333 * self.scale_y
             box02.label(text="Merge", icon="FULLSCREEN_EXIT")
-            box03 = box02.split().row(align=True)
             if context_sel == list(vert_sel):
+                box03 = box02.split().row(align=True)
                 box03.operator("mesh.merge", text="At First").type = "FIRST"
                 box03.operator("mesh.merge", text="At Last").type = "LAST"
             box02.separator()
