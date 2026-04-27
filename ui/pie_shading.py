@@ -1,6 +1,6 @@
 import bpy
 from bpy.types import Menu
-from .utils.get_addon_prefs import get_addon_preferences
+from .. import __package__ as base_package
 
 
 class CHERUBPIES_MT_Shading(Menu):
@@ -9,7 +9,7 @@ class CHERUBPIES_MT_Shading(Menu):
     def draw(self, context):
         layout = self.layout
         pie = layout.menu_pie()
-        addon_prefs = get_addon_preferences()
+        addon_prefs = getattr(bpy.context.preferences.addons.get(base_package), 'preferences', None)
         self.scale_y = addon_prefs.scale_y if addon_prefs else 1.0
         pie.scale_y = self.scale_y
         # Find the Smooth by Angle Geometry Nodes modifier

@@ -1,7 +1,6 @@
 import bpy
 
 from bpy.types import Menu
-from .utils.get_addon_prefs import get_addon_preferences
 from ..operators.utils.get_tool_settings import get_tool_settings
 
 

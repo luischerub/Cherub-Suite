@@ -1,6 +1,5 @@
 import bpy
 from bpy.types import Menu, Operator
-from .utils.get_addon_prefs import get_addon_preferences
 import os
 
 # Pie Save/Open
