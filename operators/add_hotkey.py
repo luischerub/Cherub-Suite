@@ -82,18 +82,6 @@ keymaps_items_dict = {
         False,
         False,
     ],
-    "Cherub Pies UVs Editor": [
-        "wm.call_menu_pie",
-        "CHERUBPIES_MT_UVsEditor",
-        "UV Editor",
-        "EMPTY",
-        "WINDOW",
-        "Q",
-        "PRESS",
-        False,  # ? Ctrl
-        False,  # ? Shift
-        False,  # ? Alt
-    ],
     "Cherub Pies Proportional Object": [
         "wm.call_menu_pie",
         "CHERUBPIES_MT_ProportionalObjectMode",
