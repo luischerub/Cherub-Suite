@@ -1,16 +1,16 @@
 schema_version = "1.0.0"
 
 id = "cherub_suite"
-version = "0.3.2"
+version = "0.3.4"
 name = "Cherub Suite"
-tagline = "Advanced hard-surface design & pipeline utility"
+tagline = "Common pie menu helpers & Asset Library authoring utilities"
 maintainer = "Luis Cherubini"
 type = "add-on"
 website = "https://github.com/luischerub/Cherub-Suite"
 
 blender_version_min = "5.0.0"
 
-license = ["GPL-3.0-or-later"]
+license = ["SPDX:GPL-3.0-or-later"]
 categories = ["Modeling"]
 tags = ["Mesh", "Modeling", "Pipeline"]
 
