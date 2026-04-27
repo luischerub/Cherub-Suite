@@ -1,7 +1,6 @@
 
 import bpy
 from .operators import classes
-from .utils import addon_auto_imports
 from .ui import register_ui, unregister_ui
 from .asset_settings import register_properties, unregister_properties
 from .operators.add_hotkey import add_hotkey, remove_hotkey, draw_keymap_items
@@ -14,15 +13,6 @@ from bpy.props import (
     EnumProperty,
     IntProperty,
 )
-
-# load and reload submodules
-##################################
-modules = addon_auto_imports.setup_addon_modules(
-    __path__,
-    __name__,
-    ignore_packages=[".utils", ".releases"],
-)
-
 
 class CHERUBPIES_MT_Prefs(Preferences):
     bl_idname = __name__
@@ -94,7 +84,7 @@ def register():
     add_hotkey()
 
     addon_name = "Cherub Suite"
-    print("Registered {} with {} modules".format(addon_name, len(modules)))
+    print("Registered {}".format(addon_name))
 
 
 def unregister():
