@@ -11,7 +11,7 @@ from bpy.props import (
 )
 
 class CHERUBPIES_MT_Prefs(Preferences):
-    bl_idname = __name__
+    bl_idname = __package__
 
     prefs_tabs: EnumProperty(
         items=(
