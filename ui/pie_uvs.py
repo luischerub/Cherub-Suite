@@ -40,9 +40,6 @@ class CHERUBPIES_MT_UVs(Menu):
             tool_settings, "use_edge_path_live_unwrap", toggle=False, text=""
         )
         sub = row.row()
-        sub.alert = (
-            True if tool_settings.use_edge_path_live_unwrap == False else False
-        )
         sub.label(text="Live Unwrap")
 
         #! 7 - TOP - LEFT
