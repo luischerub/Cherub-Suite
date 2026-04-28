@@ -1,4 +1,4 @@
-<h1><img src="media/cherub_logo.svg" height="24" alt=""/> Cherub Suite</h1>
+<h1><img src="media/cherub_logo.svg" height="23" alt=""/> Cherub Suite</h1>
 
 A Blender add-on that bundles common pie menu shortcuts and Asset Library authoring utilities into a single extension.
 
@@ -34,7 +34,6 @@ All pie menus are accessible via configurable hotkeys registered on install.
   </tr>
   <tr>
     <td align="center"><img src="media/pie_specials.webp" width="220"/><br/><sub>Specials</sub></td>
-    <td align="center"><img src="media/pie_uvs.webp" width="220"/><br/><sub>UVs</sub></td>
     <td></td>
   </tr>
 </table>
@@ -50,14 +49,16 @@ Custom edge loop manipulation operators available through the Specials pie menu.
 - **Edge Curve** — Adjust curvature along an edge loop with tension control and customizable rails.
 - **Bezier Deform** — Deform mesh geometry along a path defined by selected vertices.
 
+<video src="media/Bezier_deform.mp4" autoplay loop muted playsinline width="100%"></video>
+
 ---
 
 ### Shape Key Utilities
 
 Available in the **Properties > Object Data > Shape Keys** panel.
 
-- **Mesh Unifier** — Combine multiple selected meshes into one by storing each as a shape key on a base mesh.
-- **Bake to Attributes** — Bake all shape key vertex positions as custom float vector attributes on the mesh.
+- **Unify Meshes** — Combine multiple selected meshes into one by storing each as a shape key on a base mesh.
+- **Keys to Attributes** — Bake all shape key vertex positions as custom float vector attributes on the mesh.
 
 ![Shape Keys panel](media/ShapeKeys_Options.webp)
 
@@ -68,7 +69,7 @@ Available in the **Properties > Object Data > Shape Keys** panel.
 Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library authoring workflows.
 
 - **Render Thumbnails** — Render square WEBP thumbnails for selected mesh objects, auto-framed and saved to a configurable output folder.
-- **Assign Thumbnails** — Assign previously rendered WEBP thumbnails to assets marked in the current file.
+- **Apply Thumbnails** — Assign previously rendered WEBP thumbnails to assets marked in the current file.
 - **Rename by Material** — Rename selected mesh objects to match their active material name.
 
 **Settings (per scene):**
