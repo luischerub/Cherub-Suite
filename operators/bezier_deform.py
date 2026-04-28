@@ -149,6 +149,11 @@ class MESH_OT_bezier_deform(bpy.types.Operator):
                 self._apply_curve_deformation()
             return {'RUNNING_MODAL'}
 
+        if event.value == 'PRESS' and event.type in {'RET', 'NUMPAD_ENTER'}:
+            self._apply_curve_deformation()
+            self._finish(context, cancelled=False)
+            return {'FINISHED'}
+
         if event.value == 'PRESS' and event.type == 'LEFTMOUSE':
             current_time = time()
             if (current_time - self.last_left_click_time) <= self.double_click_wait_time:
@@ -167,7 +172,7 @@ class MESH_OT_bezier_deform(bpy.types.Operator):
     def _header_message(self):
         return (
             'Bezier Deform | Edit curve points | '
-            'Falloff: %.2f ([ / ], Ctrl+Wheel) | Double LMB confirm, Esc cancel'
+            'Falloff: %.2f ([ / ], Ctrl+Wheel) | Enter or Double LMB confirm, Esc cancel'
         ) % self.bezierDeformProperties.falloff
 
     def _adjust_falloff(self, context, delta):

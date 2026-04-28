@@ -1,3 +1,8 @@
+
+# Original interpolation logic based on the work of Paul Bourke.
+# https://paulbourke.net/miscellaneous/interpolation/
+# Underlying implementation by Benjamin Sauder. 
+
 import bpy
 import bmesh
 import math

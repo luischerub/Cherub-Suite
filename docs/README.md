@@ -49,9 +49,7 @@ Custom edge loop manipulation operators available through the Specials pie menu.
 - **Edge Curve** — Adjust curvature along an edge loop with tension control and customizable rails.
 - **Bezier Deform** — Deform mesh geometry along a path defined by selected vertices.
 
-  <br>
-
-  ![Bezier Deform](media/Bezier_deform.webp)
+![Bezier Deform](media/Bezier_deform.webp)
 
 ---
 
@@ -92,6 +90,14 @@ Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library au
 2. In Blender, go to **Edit > Preferences > Add-ons**.
 3. Click **Install from Disk** and select the downloaded `.zip`.
 4. Enable **Cherub Suite** in the add-on list.
+
+---
+
+## Credits
+
+- **Aditia A. Pratama** — Development contributions & Help
+- **Paul Bourke** — Edge Flow underlying interpolation logic
+- **Benjamin Sauder** — Edge Flow implementation
 
 ---
 
