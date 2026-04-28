@@ -49,7 +49,9 @@ Custom edge loop manipulation operators available through the Specials pie menu.
 - **Edge Curve** — Adjust curvature along an edge loop with tension control and customizable rails.
 - **Bezier Deform** — Deform mesh geometry along a path defined by selected vertices.
 
-![Bezier Deform](media/Bezier_deform.webp)
+  <br>
+
+  ![Bezier Deform](media/Bezier_deform.webp)
 
 ---
 
