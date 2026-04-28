@@ -26,6 +26,19 @@ All pie menus are accessible via configurable hotkeys registered on install.
 | **Specials** | | Edge Flow, Linear, Curve, Vertex Curve, Bezier Deform, and Shear |
 | **UVs** | | Mark seams, unwrap, and toggle live unwrap |
 
+<table>
+  <tr>
+    <td align="center"><img src="media/pie_select.webp" width="220"/><br/><sub>Selection</sub></td>
+    <td align="center"><img src="media/pie_delete.webp" width="220"/><br/><sub>Delete</sub></td>
+    <td align="center"><img src="media/pie_shading.webp" width="220"/><br/><sub>Shading</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="media/pie_specials.webp" width="220"/><br/><sub>Specials</sub></td>
+    <td align="center"><img src="media/pie_uvs.webp" width="220"/><br/><sub>UVs</sub></td>
+    <td></td>
+  </tr>
+</table>
+
 ---
 
 ### Edge Tools
@@ -46,6 +59,8 @@ Available in the **Properties > Object Data > Shape Keys** panel.
 - **Mesh Unifier** — Combine multiple selected meshes into one by storing each as a shape key on a base mesh.
 - **Bake to Attributes** — Bake all shape key vertex positions as custom float vector attributes on the mesh.
 
+![Shape Keys panel](media/ShapeKeys_Options.webp)
+
 ---
 
 ### Asset Library Tools
@@ -63,6 +78,8 @@ Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library au
 | Output Path | Folder where thumbnails are saved/loaded from |
 | Resolution | Thumbnail render resolution (64–4096 px, default 512) |
 | Padding | Camera framing padding around the object (default 1.1) |
+
+![Asset Library Tools panel](media/AssetLibraryTools.webp)
 
 ---
 
