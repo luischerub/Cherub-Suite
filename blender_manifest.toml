@@ -15,4 +15,4 @@ categories = ["Modeling"]
 tags = ["Mesh", "Modeling", "Pipeline"]
 
 [permissions]
-files = ["write"]
+files = "write"
