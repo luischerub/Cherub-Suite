@@ -95,9 +95,9 @@ Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library au
 
 ## Credits
 
-- **Aditia A. Pratama** — Development contributions & Help
+- **[Aditia A. Pratama](https://github.com/aditiapratama)** — Development contributions & Help
 - **Paul Bourke** — Edge Flow underlying interpolation logic
-- **Benjamin Sauder** — Edge Flow implementation
+- **[Benjamin Sauder](https://github.com/BenjaminSauder)** — Edge Flow implementation
 
 ---
 
