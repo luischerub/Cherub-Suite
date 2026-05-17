@@ -38,10 +38,10 @@ class CHERUB_OT_AssetLibRender(bpy.types.Operator):
             os.makedirs(output_folder)
 
         # 3. Render Loop
-        # Hide all meshes to avoid background clutter
-        all_meshes = [o for o in scene.objects if o.type == 'MESH']
-        for mesh in all_meshes:
-            mesh.hide_render = True
+        # Hide all meshes and font objects to avoid background clutter
+        all_objects = [o for o in scene.objects if o.type in {'MESH', 'FONT'}]
+        for obj in all_objects:
+            obj.hide_render = True
 
         # Use the active object as the framing reference — it's the object the artist
         # positioned the camera for.  Fall back to assets[0] if active isn't a mesh.
