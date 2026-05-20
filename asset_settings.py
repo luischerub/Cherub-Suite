@@ -27,6 +27,12 @@ class CherubAssetSettings(bpy.types.PropertyGroup):
         min=1.0
     )
 
+    fit_per_object: bpy.props.BoolProperty(
+        name="Auto Frame",
+        description="Objects of any size fill the frame consistently by projecting their vertices onto the camera plane.",
+        default=True,
+    )
+
     # N-panel section state
     asset_tools_expanded: BoolProperty(
         name="Asset Library Tools",

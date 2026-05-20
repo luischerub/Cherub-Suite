@@ -41,9 +41,15 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 
 		col.operator("cherub.assetlib_rename_by_material", icon="MATERIAL")
 
+		col.separator()
+
 		row = col.row(align=True)
 		row.operator("cherub.assetlib_render_assets", icon="RENDER_STILL")
-		row.operator("cherub.assetlib_assign_thumb", icon="IMAGE_DATA")
+		row.prop(props, "fit_per_object", text="", icon="ZOOM_SELECTED")
+
+		col.separator()
+
+		col.operator("cherub.assetlib_assign_thumb", icon="IMAGE_DATA")
 
 		info = col.box()
 		info.label(text="Select objects before rendering.", icon="INFO")
