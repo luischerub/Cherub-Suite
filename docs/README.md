@@ -86,7 +86,20 @@ Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library au
 
 ## Installation
 
-1. Download the latest release `.zip` from the [Releases](https://github.com/luischerub/Cherub-Suite/releases) page.
+### Online (Extension Repository)
+
+1. In Blender, go to **Edit > Preferences > Get Extensions**.
+2. Click the **Repositories** dropdown (top-right) and select **+ Icon** > **Add Remote Repository**.
+3. Paste the following URL and confirm:
+   ```
+   https://luischerub.github.io/dist/index.json
+   ```
+4. Search for **Cherub Suite** and click **Install**.
+
+### Offline
+
+1. Download the source code as a `.zip` from the [repository](https://github.com/luischerub/Cherub-Suite) 
+(click **Code > Download ZIP**).
 2. In Blender, go to **Edit > Preferences > Add-ons**.
 3. Click **Install from Disk** and select the downloaded `.zip`.
 4. Enable **Cherub Suite** in the add-on list.
