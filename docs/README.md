@@ -3,7 +3,6 @@
 A Blender add-on that bundles common pie menu shortcuts and Asset Library authoring utilities into a single extension.
 
 **Blender:** 5.0+  
-**Version:** 0.3.6  
 **License:** GPL-3.0-or-later
 
 ---
