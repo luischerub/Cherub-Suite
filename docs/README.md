@@ -91,7 +91,7 @@ Available in the **N-panel > Cherub** tab. Designed to speed up Asset Library au
 2. Click the **Repositories** dropdown (top-right) and select **+ Icon** > **Add Remote Repository**.
 3. Paste the following URL and confirm:
    ```
-   https://luischerub.github.io/dist/index.json
+   https://luischerub.github.io/Cherub-Suite/
    ```
 4. Search for **Cherub Suite** and click **Install**.
 
