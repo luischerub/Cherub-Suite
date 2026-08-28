@@ -3,11 +3,11 @@
   "blocklist": [],
   "data": [
     {
-      "schema_version": "1.0.0",
+      "schema_version": "1.0.1",
       "id": "cherub_suite",
       "name": "Cherub Suite",
       "tagline": "Common pie menu helpers & Asset Library authoring utilities",
-      "version": "0.3.7",
+      "version": "1.0.1",
       "type": "add-on",
       "maintainer": "Luis Cherubini",
       "license": [
@@ -24,8 +24,8 @@
         "Pipeline"
       ],
       "archive_url": "./cherub_suite.zip",
-      "archive_size": 223047,
-      "archive_hash": "sha256:0224218bff3760fdde2cc71513cdc35184a358376440da73d960f6e4e39ed26a"
+      "archive_size": 223043,
+      "archive_hash": "sha256:23d93a6aebf05506f1bd5b5d3eb3a3dbaccd4ead578c0dadf58120f496bf8d71"
     }
   ]
 }
