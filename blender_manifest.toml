@@ -1,7 +1,7 @@
-schema_version = "1.0.1"
+schema_version = "1.0.2"
 
 id = "cherub_suite"
-version = "1.0.1"
+version = "1.0.2"
 name = "Cherub Suite"
 tagline = "Common pie menu helpers & Asset Library authoring utilities"
 maintainer = "Luis Cherubini"
