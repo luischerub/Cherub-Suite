@@ -8,6 +8,12 @@ class CHERUBSUITE_PT_MainPanel(bpy.types.Panel):
 	bl_region_type = "UI"
 	bl_category = "Cherub Suite"
 
+	def draw_header(self, context):
+		from .. import preview_collections
+		pcoll = preview_collections.get("main")
+		if pcoll:
+			self.layout.label(text="", icon_value=pcoll["cherub_logo"].icon_id)
+
 	def draw(self, context):
 		layout = self.layout
 		scene = context.scene

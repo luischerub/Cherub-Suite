@@ -1,5 +1,10 @@
 
+import os
 import bpy
+import bpy.utils.previews
+
+preview_collections = {}
+
 from .operators import classes
 from .ui import register_ui, unregister_ui
 from .asset_settings import register_properties, unregister_properties
@@ -66,6 +71,11 @@ def register():
 
     add_hotkey()
 
+    pcoll = bpy.utils.previews.new()
+    icons_dir = os.path.join(os.path.dirname(__file__), "docs", "media")
+    pcoll.load("cherub_logo", os.path.join(icons_dir, "cherub_logo.png"), 'IMAGE')
+    preview_collections["main"] = pcoll
+
     addon_name = "Cherub Suite"
     print("Registered {}".format(addon_name))
 
@@ -81,6 +91,10 @@ def unregister():
         bpy.utils.unregister_class(c)
 
     remove_hotkey()
+
+    for pcoll in preview_collections.values():
+        bpy.utils.previews.remove(pcoll)
+    preview_collections.clear()
 
     addon_name = "Cherub Suite"
     print("Unregistered {}".format(addon_name))
