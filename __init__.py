@@ -60,6 +60,14 @@ classes.append(CHERUBPIES_MT_Prefs)
 
 
 def register():
+    pcoll = bpy.utils.previews.new()
+    icons_dir = os.path.join(os.path.dirname(__file__), "docs", "media")
+    pcoll.load("cherub_logo", os.path.join(icons_dir, "cherub_logo.png"), 'IMAGE')
+    preview_collections["main"] = pcoll
+
+    from .ui.main_panel import CHERUBSUITE_PT_MainPanel
+    CHERUBSUITE_PT_MainPanel.bl_icon_value = pcoll["cherub_logo"].icon_id
+
     register_ui()
     register_properties()
 
@@ -70,11 +78,6 @@ def register():
         bpy.types.Scene.bezierDeformProperties = bpy.props.PointerProperty(type=bpy.types.BezierDeformProperties)
 
     add_hotkey()
-
-    pcoll = bpy.utils.previews.new()
-    icons_dir = os.path.join(os.path.dirname(__file__), "docs", "media")
-    pcoll.load("cherub_logo", os.path.join(icons_dir, "cherub_logo.png"), 'IMAGE')
-    preview_collections["main"] = pcoll
 
     addon_name = "Cherub Suite"
     print("Registered {}".format(addon_name))
